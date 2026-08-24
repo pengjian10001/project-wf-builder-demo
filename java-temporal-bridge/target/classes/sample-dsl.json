@@ -1,0 +1,85 @@
+{
+  "name": "approval_demo",
+  "layoutDirection": "DOWN",
+  "globalVariables": {},
+  "nodes": [
+    {
+      "id": "submit_apply",
+      "type": "node",
+      "position": { "x": 240, "y": 20 },
+      "data": {
+        "type": "action",
+        "icon": "PlayCircle",
+        "properties": {
+          "label": "提交申请",
+          "description": "映射 Java Activity: submitApplication",
+          "type": "makeApiCall",
+          "status": "active"
+        }
+      }
+    },
+    {
+      "id": "wait_audit",
+      "type": "node",
+      "position": { "x": 240, "y": 160 },
+      "data": {
+        "type": "notification",
+        "icon": "HandPalm",
+        "properties": {
+          "label": "等待审批信号",
+          "description": "Java: Workflow.await + auditSignal",
+          "type": "webhook",
+          "status": "active"
+        }
+      }
+    },
+    {
+      "id": "audit_branch",
+      "type": "decision-node",
+      "position": { "x": 220, "y": 300 },
+      "data": {
+        "type": "decision",
+        "icon": "ArrowsSplit",
+        "properties": {
+          "label": "审批结果",
+          "status": "active",
+          "decisionBranches": []
+        }
+      }
+    },
+    {
+      "id": "notify_pass",
+      "type": "node",
+      "position": { "x": 80, "y": 460 },
+      "data": {
+        "type": "action",
+        "icon": "PlayCircle",
+        "properties": {
+          "label": "通过通知",
+          "type": "makeApiCall",
+          "status": "active"
+        }
+      }
+    },
+    {
+      "id": "notify_reject",
+      "type": "node",
+      "position": { "x": 400, "y": 460 },
+      "data": {
+        "type": "action",
+        "icon": "PlayCircle",
+        "properties": {
+          "label": "驳回通知",
+          "type": "makeApiCall",
+          "status": "active"
+        }
+      }
+    }
+  ],
+  "edges": [
+    { "id": "e1", "source": "submit_apply", "target": "wait_audit" },
+    { "id": "e2", "source": "wait_audit", "target": "audit_branch" },
+    { "id": "e3", "source": "audit_branch", "target": "notify_pass" },
+    { "id": "e4", "source": "audit_branch", "target": "notify_reject" }
+  ]
+}
