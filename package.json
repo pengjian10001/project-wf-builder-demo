@@ -7,12 +7,18 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "oxlint",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test:nodes": "node --test src/nodes/biz-calc-order-tax/calc-order-tax.test.mjs"
   },
   "dependencies": {
     "@workflowbuilder/sdk": "^2.3.0",
+    "@xyflow/react": "^12.11.3",
+    "i18next": "24.2.3",
+    "i18next-browser-languagedetector": "^8.2.1",
     "react": "^19.2.8",
-    "react-dom": "^19.2.8"
+    "react-dom": "^19.2.8",
+    "react-i18next": "15.7.4",
+    "zustand": "^5.0.15"
   },
   "devDependencies": {
     "@types/node": "^24.13.3",

@@ -1,31 +1,12 @@
-import React from "react";
-import { WorkflowBuilder } from "@workflowbuilder/sdk";
-// 必须引入SDK样式，否则画布样式错乱
-import "@workflowbuilder/sdk/style.css";
-
-export default function App() {
-  return (
-    <div style={{ width: "100vw", height: "100vh" }}>
-      <WorkflowBuilder.Root
-        name="demo hello workflow"
-        layoutDirection="DOWN" // DOWN从上往下排版；RIGHT从左到右
-        // ========== 集成策略 props模式 ==========
-        integration={{
-          strategy: "props",
-          // 点击画布【保存】按钮触发此回调
-          onDataSave: async (graphData) => {
-            console.log("=== 保存工作流Graph JSON ===");
-            console.log(JSON.stringify(graphData, null, 2));
-            // 👉真实业务：此处写fetch/axios POST graphData传给后端接口
-            // await fetch("/api/workflow/save", { method:"POST", body:JSON.stringify(graphData) })
-            return "success";
-          },
-        }}
-        // 默认加载全部官方内置节点
-        nodeRegistry={{
-          nodes: builtinNodes,
-        }}
-      />
-    </div>
-  );
-}
+/** 切换章节示例：改下一行的 import 即可 */
+export { default } from './examples/Ch3CustomNodePluginDemo';
+// export { default } from './examples/Ch4GraphEventsDemo';
+// export { default } from './examples/Ch1HelloWorldDemo';
+// export { default } from './examples/Ch2LinearFlowDemo';
+// export { default } from './examples/Ch11ExportDslToJavaDemo';
+// export { default } from './examples/Ch9AfterSaleDemo';
+// export { default } from './examples/Ch10CustomNodeDemo';
+// export { default } from './examples/Ch7AsyncWaitDemo';
+// export { default } from './examples/Ch8SdkGuideDemo';
+// export { default } from './examples/Ch5ErrorHandlingDemo';
+// export { default } from './examples/Ch6ControlFlowDemo';
